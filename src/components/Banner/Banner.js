@@ -6,7 +6,6 @@ function Banner() {
             <header className="banner"> 
                 <img src="/image/banner.png" alt="Banner principal" data-test="banner" />
             </header>
-            <h1>Testando</h1>
         </>
     )
         

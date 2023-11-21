@@ -1,8 +1,9 @@
-import TextField from "../TextField"
-import Combobox from "../Combobox"
 import { useState } from 'react';
-import Button from "../Button"
-import './Form.css'
+import Button from "../Button";
+import Combobox from "../Combobox";
+import TextField from "../TextField";
+import ColorField from '../ColorField';
+import './Form.css';
 
 const Form = (props) => {
 
@@ -10,6 +11,8 @@ const Form = (props) => {
     const [office, setOffice ] = useState('')
     const [imagem, setImagem ] = useState('')
     const [team, setTeam ] = useState('')
+    const [nameTeam, setNameTeam ] = useState('')
+    const [colorTeam, setColorTeam ] = useState('')
 
     const whenSaving = (event) => {
         event.preventDefault()
@@ -60,6 +63,31 @@ const Form = (props) => {
                     whenUpdate={ valor => setTeam(valor)}
                 />
                 <Button text="Criar Card">Criar Card</Button>
+            </form>
+            <form onSubmit={(event) => { 
+                event.preventDefault();
+                props.registerTeam({name: nameTeam, color: colorTeam})
+            }}>
+                <h2>Preencha os dados para criar o time</h2>
+                <TextField 
+                    mandatory={true} 
+                    id="nome" 
+                    label="Nome" 
+                    placeholder="Digite nome do time"
+                    valor={nameTeam} 
+                    whenUpdate={ valor => setNameTeam(valor)}
+                />
+                <ColorField 
+                    mandatory={true} 
+                    id="cor" 
+                    label="Cor" 
+                    placeholder="Escolha cor do time"
+                    valor={colorTeam} 
+                    type='color'
+                    whenUpdate={ valor => setColorTeam(valor)}
+                />
+                
+                <Button text="Criar Card">Criar Time</Button>
             </form>
         </section>
     )
